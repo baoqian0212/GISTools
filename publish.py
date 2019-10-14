@@ -1,13 +1,13 @@
 # -*- coding: cp936 -*-
 """
-Description:è‡ªåŠ¨æ¨é€æ•°æ®å‘å¸ƒæœåŠ¡
+Description:×Ô¶¯ÍÆËÍÊı¾İ·¢²¼·şÎñ
 Author:baoqian
 Prompt:code in Python27 env
 """
 
 """
-åŠŸèƒ½æè¿°ï¼šå»ºé•¶åµŒæ•°æ®é›†å‘å¸ƒæˆå½±åƒæœåŠ¡
-å‚æ•°æè¿°ï¼š1 servicenameï¼šæœåŠ¡å 2 mdpathï¼šé•¶åµŒæ•°æ®é›†è·¯å¾„ 3 server_urlï¼šserverçš„è®¿é—®è·¯å¾„url
+¹¦ÄÜÃèÊö£º½¨ÏâÇ¶Êı¾İ¼¯·¢²¼³ÉÓ°Ïñ·şÎñ
+²ÎÊıÃèÊö£º1 servicename£º·şÎñÃû 2 mdpath£ºÏâÇ¶Êı¾İ¼¯Â·¾¶ 3 server_url£ºserverµÄ·ÃÎÊÂ·¾¶url
 """
 # -*- coding: utf-8 -*-
 
@@ -18,12 +18,12 @@ import shutil as SHUTIL
 generalfolder = OS.getcwd()
 servicename = 'MyImageServicebyPython2'
 mdpath = r'D:\gisdata\MosaicDataset\test.gdb\Gf1'
-# Step1 åˆ›å»ºGISæœåŠ¡å™¨è¿æ¥æ–‡ä»¶
+# Step1 ´´½¨GIS·şÎñÆ÷Á¬½ÓÎÄ¼ş
 
-print u'Step1 åˆ›å»ºGISæœåŠ¡å™¨è¿æ¥æ–‡ä»¶...'
+print u'Step1 ´´½¨GIS·şÎñÆ÷Á¬½ÓÎÄ¼ş...'
 
 connecttype = 'ADMINISTER_GIS_SERVICES'
-# åˆ›å»ºä¸€ä¸ªç”¨äºå­˜æ”¾agså’Œsdçš„æ–‡ä»¶å¤¹,ä¸´æ—¶çš„ä¸‹æ¬¡å†è°ƒç”¨æ—¶æ–‡ä»¶å†…å®¹å°†è¢«è¦†ç›–
+# ´´½¨Ò»¸öÓÃÓÚ´æ·ÅagsºÍsdµÄÎÄ¼ş¼Ğ,ÁÙÊ±µÄÏÂ´ÎÔÙµ÷ÓÃÊ±ÎÄ¼şÄÚÈİ½«±»¸²¸Ç
 outdir = OS.path.join(generalfolder, 'PublishImageService')
 if OS.path.exists(outdir):
     SHUTIL.rmtree(outdir)
@@ -48,11 +48,11 @@ ARCPY.mapping.CreateGISServerConnectionFile(connecttype,
                                             password,
                                             "SAVE_USERNAME")
 
-print '      ' + out_name.decode('utf-8') + u' å·²åˆ›å»º'
+print '      ' + out_name.decode('utf-8') + u' ÒÑ´´½¨'
 
-# Step2 åˆ›å»ºå½±åƒæœåŠ¡å®šä¹‰è‰ç¨¿æ–‡ä»¶(.sddraft)
+# Step2 ´´½¨Ó°Ïñ·şÎñ¶¨Òå²İ¸åÎÄ¼ş(.sddraft)
 
-print u'Step2 åˆ›å»ºå½±åƒæœåŠ¡å®šä¹‰è‰ç¨¿æ–‡ä»¶...'
+print u'Step2 ´´½¨Ó°Ïñ·şÎñ¶¨Òå²İ¸åÎÄ¼ş...'
 
 connoctionfile = OS.path.join(outdir, out_name)
 service = servicename
@@ -60,30 +60,34 @@ sddraft = OS.path.join(outdir, service + '.sddraft')
 
 ARCPY.CreateImageSDDraft(mdpath, sddraft, service,
                          'ARCGIS_SERVER', copy_data_to_server=False)
-print '      ' + service + '.sddraft' + u'  å·²åˆ›å»º'
+print '      ' + service + '.sddraft' + u'  ÒÑ´´½¨'
 
-# Step3 åˆ†ææœåŠ¡å®šä¹‰è‰ç¨¿
-print u'Step3 åˆ†ææœåŠ¡å®šä¹‰è‰ç¨¿æ–‡ä»¶...'
+# Step3 ·ÖÎö·şÎñ¶¨Òå²İ¸å
+print u'Step3 ·ÖÎö·şÎñ¶¨Òå²İ¸åÎÄ¼ş...'
 analysis = ARCPY.mapping.AnalyzeForSD(sddraft)
 
-print(u"      åˆ†ææœåŠ¡å®šä¹‰è‰ç¨¿ç»“æœ:")
+print(u"      ·ÖÎö·şÎñ¶¨Òå²İ¸å½á¹û:")
 for key in list(analysis.keys()):
     print("      ---{}---".format(key.upper()))
     for ((message, code), layerlist) in analysis[key].items():
         print("        (CODE {})  {} ".format(code, message))
 
-# Step4 è¿‡æ¸¡ sddraft åˆ°æœåŠ¡å®šä¹‰æ–‡ä»¶sd
-print u'Step4 è¿‡æ¸¡sddraft åˆ°æœåŠ¡å®šä¹‰æ–‡ä»¶sd...'
+# Step4 ¹ı¶É sddraft µ½·şÎñ¶¨ÒåÎÄ¼şsd
+print u'Step4 ¹ı¶Ésddraft µ½·şÎñ¶¨ÒåÎÄ¼şsd...'
 outSDfile = OS.path.join(outdir, service+".sd")
 
 ARCPY.StageService_server(sddraft, outSDfile)
 print u'      Done!'
 
-# Step5 å°†æœåŠ¡å®šä¹‰æ–‡ä»¶å‘å¸ƒåˆ°æœåŠ¡å™¨
-print u'Step5 å°†æœåŠ¡å®šä¹‰æ–‡ä»¶å‘å¸ƒåˆ°æœåŠ¡å™¨...'
+# Step5 ½«·şÎñ¶¨ÒåÎÄ¼ş·¢²¼µ½·şÎñÆ÷
+print u'Step5 ½«·şÎñ¶¨ÒåÎÄ¼ş·¢²¼µ½·şÎñÆ÷...'
 inSdFile = outSDfile
 inServer = connoctionfile
 inServiceName = service
 
 ARCPY.UploadServiceDefinition_server(inSdFile, inServer, inServiceName)
 print u'      Done!'
+
+
+
+
